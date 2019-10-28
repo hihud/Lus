@@ -1,0 +1,45 @@
+<div class="card">
+    <div class="card-body">
+      <form [formGroup]="angForm" novalidate>
+        <div class="form-group">
+          <label class="col-md-4">Product Name</label>
+          <input type="text" class="form-control" 
+            formControlName="Name" 
+            #Name [(ngModel)] = "product.name"/>
+        </div>
+        <div *ngIf="angForm.controls['Name'].invalid && (angForm.controls['Name'].dirty || angForm.controls['Name'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['Name'].errors.required">
+            Product Name is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4">Collection</label>
+          <input type="text" class="form-control" 
+            formControlName="Collection" 
+            #Collection [(ngModel)] = "product.collection"/>
+        </div>
+        <div *ngIf="angForm.controls['Collection'].invalid && (angForm.controls['Collection'].dirty || angForm.controls['Collection'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['Collection'].errors.required">
+            Collection is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4">Provider</label>
+          <input type="text" class="form-control" 
+            formControlName="Provider" 
+            #Provider [(ngModel)] = "product.provider"/>
+        </div>
+        <div *ngIf="angForm.controls['Provider'].invalid && (angForm.controls['Provider'].dirty || angForm.controls['Provider'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['Provider'].errors.required">
+            Provider is required.
+          </div>
+        </div>
+        <div class="form-group">
+                <button (click) = "updateProduct(product.name, product.collection, product.provider)" type="submit" class="btn btn-primary"
+                [disabled]="angForm.invalid" >
+                  Update Product
+                </button>
+        </div>
+      </form>
+    </div>
+  </div>

@@ -1,0 +1,42 @@
+<div class="form">
+    <form [formGroup]="angForm" novalidate class="form-box">
+        <div *ngIf="unauthorized"
+            class="alert alert-danger">
+            <div>
+                Username or password is incorrect
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4"><strong>Username</strong></label>
+            <input type="text" class="form-control" formControlName="Username" #Username placeholder="Username" />
+        </div>
+        <div *ngIf="angForm.controls['Username'].invalid && (angForm.controls['Username'].dirty || angForm.controls['Username'].touched)"
+            class="alert alert-danger">
+            <div *ngIf="angForm.controls['Username'].errors.required">
+                Username is required.
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4"><strong>Password</strong></label>
+            <input type="password" class="form-control" formControlName="Password" #Password placeholder="Password" />
+        </div>
+        <div *ngIf="angForm.controls['Password'].invalid && (angForm.controls['Password'].dirty || angForm.controls['Password'].touched)"
+            class="alert alert-danger">
+            <div *ngIf="angForm.controls['Password'].errors.required">
+                Password is required.
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" [disabled]="angForm.pristine || angForm.invalid"
+                (click)="login(Username.value, Password.value)">
+                Login
+            </button>
+            <span style="float:right;">
+                <a routerLink="/register">
+                    Register
+                </a>
+            </span>
+
+        </div>
+    </form>
+</div>

@@ -1,0 +1,81 @@
+<div class="card">
+    <div class="card-body">
+      <form [formGroup]="angForm" novalidate>
+        <div class="form-group">
+          <label class="col-md-4">Product Name</label>
+          <input type="text" class="form-control" 
+            formControlName="Name" 
+            #Name />
+        </div>
+        <div *ngIf="angForm.controls['Name'].invalid && (angForm.controls['Name'].dirty || angForm.controls['Name'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['Name'].errors.required">
+            Product Name is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4">Collection</label>
+          <input type="text" class="form-control" 
+            formControlName="Collection" 
+            #Collection />
+        </div>
+        <div *ngIf="angForm.controls['Collection'].invalid && (angForm.controls['Collection'].dirty || angForm.controls['Collection'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['Collection'].errors.required">
+            Collection is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4">Provider</label>
+          <input type="text" class="form-control" 
+            formControlName="Provider" 
+            #Provider />
+        </div>
+        <div *ngIf="angForm.controls['Provider'].invalid && (angForm.controls['Provider'].dirty || angForm.controls['Provider'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['Provider'].errors.required">
+            Provider is required.
+          </div>
+        </div>
+        <!-- <div class="form-group">
+          <label class="col-md-4">Product Description </label>
+          <textarea class="form-control" rows = 7 cols = "5"
+          formControlName="ProductDescription" 
+          #ProductDescription></textarea>
+        </div>
+        <div *ngIf="angForm.controls['ProductDescription'].invalid && (angForm.controls['ProductDescription'].dirty || angForm.controls['ProductDescription'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['ProductDescription'].errors.required">
+            Product Description is required.
+          </div>
+        </div> -->
+        <div class="form-group">
+          <label class="col-md-4">Product Price</label>
+          <input type="text" class="form-control" 
+            formControlName="ProductPrice" 
+            #ProductPrice
+          />
+        </div>
+        <div *ngIf="angForm.controls['ProductPrice'].invalid && (angForm.controls['ProductPrice'].dirty || angForm.controls['ProductPrice'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['ProductPrice'].errors.required">
+            Product Price is required.
+          </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4">Product Discription</label>
+            <ckeditor [editor]="Editor" [(ngModel)]="description.editorData" formControlName="Description"  #Description ></ckeditor>
+            <!-- <input type="text" class="form-control" 
+              formControlName="Discription" 
+              #Discription
+            /> -->
+          </div>
+          <div *ngIf="angForm.controls['Description'].invalid && (angForm.controls['Description'].dirty || angForm.controls['Description'].touched)" class="alert alert-danger">
+              <div *ngIf="angForm.controls['Description'].errors.required">
+                Product Description is required.
+              </div>
+            </div>
+        <div class="form-group">
+                <button (click) = "addProduct(Name.value, Collection.value, Provider.value,description.editorData)" type="submit" class="btn btn-primary"
+                [disabled]="angForm.pristine || angForm.invalid" >
+                  Create Product
+                </button>
+        </div>
+      </form>
+    </div>
+  </div>

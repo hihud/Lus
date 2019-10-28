@@ -1,0 +1,42 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import Product from '../models/Product';
+import { map } from 'rxjs/operators';
+@Injectable({
+  providedIn: 'root'
+})
+export class ProductsService {
+  uri = 'https://localhost:44327/api/product';
+  constructor(private http: HttpClient) { }
+
+  addProduct(Name, Collection, Provider,Description) {
+    const obj = {
+      Name,
+      Collection,
+      Provider,
+      Description
+    };
+    this.http.post(`${this.uri}/addProduct`, obj)
+        .subscribe(res => console.log('Done'));
+  }
+  updateProduct(Name, Collection, Provider, LusId) {
+    const obj = {
+      LusId,
+      Name,
+      Collection,
+      Provider
+    };
+    return this.http.put(`${this.uri}/updateProduct`, obj).pipe(map((response:Product)=>{
+      return response;
+    }));
+  }
+
+  getProducts() {
+    return this.http.get(`${this.uri}/GetAll`);
+  }
+
+  getProductInfor(lusid:string){
+    
+    return this.http.get(`${this.uri}/GetProductInfor?lusid=`+lusid);
+  }
+}
