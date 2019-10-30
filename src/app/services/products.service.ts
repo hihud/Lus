@@ -39,4 +39,13 @@ export class ProductsService {
     
     return this.http.get(`${this.uri}/GetProductInfor?lusid=`+lusid);
   }
+
+  uploadImage(formData){
+   return  this.http.post('url/to/your/api', formData)
+    .pipe(map((res:Object) => {
+      console.log(res);
+      return  res;
+    }));
+  }
+
 }
