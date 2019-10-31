@@ -41,7 +41,7 @@ preview() {
     this.previewUrl = reader.result; 
   }
 }
-onSubmit() {
+uploadProductImage() {
   const formData = new FormData();
     formData.append('file', this.fileData);
     this.ps.uploadImage(formData).subscribe(res=>{
@@ -54,7 +54,12 @@ onSubmit() {
     });
 }
   addProduct(Name, Collection, Provider,Description) {
-    this.ps.addProduct(Name, Collection, Provider,Description);
+    if(this.fileData==null){
+      return this.uploadImage=false;
+    }
+    let formData = new FormData();
+    formData.append('file', this.fileData);
+    this.ps.addProduct(Name, Collection, Provider,Description,formData);
   }
   createForm() {
     this.angForm = this.fb.group({

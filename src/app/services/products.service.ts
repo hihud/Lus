@@ -9,12 +9,13 @@ export class ProductsService {
   uri = 'https://localhost:44327/api/product';
   constructor(private http: HttpClient) { }
 
-  addProduct(Name, Collection, Provider,Description) {
+  addProduct(Name, Collection, Provider,Description, Image) {
     const obj = {
       Name,
       Collection,
       Provider,
-      Description
+      Description,
+      Image
     };
     this.http.post(`${this.uri}/addProduct`, obj)
         .subscribe(res => console.log('Done'));
