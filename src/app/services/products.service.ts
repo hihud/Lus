@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProductsService {
-  uri = 'https://localhost:44327/api/product';
+  uri = 'https://lusprojectapi.azurewebsites.net/api/product';
   constructor(private http: HttpClient) { }
 
   addProduct(Name, Collection, Provider,Description, Image) {

@@ -11,7 +11,7 @@ import User from '../models/User';
   providedIn: 'root'
 })
 export class UsersService {
-  uri = 'https://localhost:44327/api/user';
+  uri = 'https://lusprojectapi.azurewebsites.net/api/user';
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
